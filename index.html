@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Plataforma</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="platform-screen">
+    <header>
+      <div class="logo">MiPlataforma</div>
+      <div class="profile">
+        <img src="https://i.pravatar.cc/40" alt="Perfil" />
+      </div>
+    </header>
+
+    <div class="container">
+      <aside class="sidebar">
+        <h2>Clases</h2>
+        <ul id="class-list">
+          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">Clase 1</li>
+          <li onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/tgbNymZ7vqY')">Clase 2</li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <h2 id="class-title">Selecciona una clase</h2>
+        <div class="video-container">
+          <iframe id="video-frame" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function loadVideo(title, url) {
+      document.getElementById('class-title').innerText = title;
+      document.getElementById('video-frame').src = url;
+    }
+  </script>
+</body>
+</html>
+
+
+

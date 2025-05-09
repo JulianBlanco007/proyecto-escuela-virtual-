@@ -1,0 +1,34 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Mi Plataforma</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="login-screen">
+    <h1>Bienvenido a Mi Plataforma</h1>
+    <p class="quote">"El aprendizaje constante es el camino al éxito."</p>
+    <input type="text" placeholder="Usuario" id="user" />
+    <input type="password" placeholder="Contraseña" id="pass" />
+    <button onclick="fakeLogin()">Iniciar sesión</button>
+  </div>
+
+  <script>
+    function fakeLogin() {
+      const user = document.getElementById('user').value;
+      const pass = document.getElementById('pass').value;
+
+      if (user && pass) {
+        // Redirige al index.html
+        window.location.href = "index.html";
+      } else {
+        alert('Por favor ingresa usuario y contraseña');
+      }
+    }
+  </script>
+</body>
+</html>
+
