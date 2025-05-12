@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +11,9 @@
     <header>
       <div class="logo">MiPlataforma</div>
       <div class="profile">
+        <span id="username"></span>
         <img src="https://i.pravatar.cc/40" alt="Perfil" />
+        <button onclick="logout()">Cerrar sesión</button>
       </div>
     </header>
 
@@ -30,14 +31,39 @@
         <div class="video-container">
           <iframe id="video-frame" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
         </div>
+
+        <div class="progress">
+          <label>Progreso: 50%</label>
+          <progress value="50" max="100"></progress>
+        </div>
+
+        <div class="comments">
+          <h3>Comentarios</h3>
+          <textarea placeholder="Escribe tu comentario..."></textarea>
+          <button onclick="alert('Comentario enviado (simulado)')">Enviar</button>
+        </div>
       </main>
     </div>
   </div>
 
   <script>
+    window.onload = () => {
+      const name = localStorage.getItem("user");
+      if (name) {
+        document.getElementById("username").textContent = "Hola, " + name;
+      } else {
+        window.location.href = "login.html";
+      }
+    };
+
     function loadVideo(title, url) {
       document.getElementById('class-title').innerText = title;
       document.getElementById('video-frame').src = url;
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
     }
   </script>
 </body>
