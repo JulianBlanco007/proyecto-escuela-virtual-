@@ -1,75 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SION - Bienvenida</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="platform-screen">
-    <header>
-       <img src="img/imagen1.png" class="img1" />
-      <div class="logo"></div>
-      <div class="profile">
-        <span id="username"></span>
-        <img src="https://i.pravatar.cc/40" alt="Perfil" />
-        <button onclick="logout()">Cerrar sesión</button>
-      </div>
-    </header>
+<body class="bienvenida">
+  <header class="welcome-header">
+    <h1>Bienvenido a SION Asesorías</h1>
+    <p>Transformando mentes, edificando en principios del Reino</p>
+  </header>
 
-    <div class="container">
-      <aside class="sidebar">
-        <h2>Clases</h2>
-        <ul id="class-list">
-          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')">Clase 1</li>
-          <li onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')">Clase 2</li>
-        </ul>
-      </aside>
+  <main class="welcome-content">
+    <section>
+      <h2>¿Quiénes somos?</h2>
+      <p>
+        Somos una organización que sirve a Dios mediante imparticiones, entrenamientos y asesorías, con el fin de que los hijos de Dios sean reconciliados con su propósito, edificados en los principios del sistema económico del Reino, y manifiesten a Cristo en la esfera laboral y empresarial.
+      </p>
+    </section>
 
-      <main class="content">
-        <h2 id="class-title">Selecciona una clase</h2>
-        <div class="video-container">
-          <iframe id="video-frame" width="50%" height="400" frameborder="0" allowfullscreen></iframe>
-        </div>
+    <section>
+      <h2>Misión</h2>
+      <p>
+        Reconectar a los hijos de Dios con el propósito y diseño económico del Reino a través de un proceso de transformación mental y edificación espiritual.
+      </p>
+    </section>
 
-        <div class="progress">
-          <label>Progreso: 50%</label>
-          <progress value="50" max="100"></progress>
-        </div>
+    <section>
+      <h2>Visión</h2>
+      <p>
+        Impactar la economía del Reino edificando pastores, empresarios y consejeros que fluyan con productividad, sabiduría y manifestación de Cristo en sus áreas de influencia.
+      </p>
+    </section>
 
-        <div class="comments">
-          <h3>Comentarios</h3>
-          <textarea placeholder="Escribe tu comentario..."></textarea>
-          <button onclick="alert('Comentario enviado (simulado)')">Enviar</button>
-        </div>
-      </main>
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="window.location.href='clases.html'">Ir a Clases</button>
     </div>
-  </div>
-
-  <script>
-    window.onload = () => {
-      const name = localStorage.getItem("user");
-      if (name) {
-        document.getElementById("username").textContent = "Hola, " + name;
-      } else {
-        window.location.href = "login.html";
-      }
-    };
-
-    function loadVideo(title, url) {
-      document.getElementById('class-title').innerText = title;
-      document.getElementById('video-frame').src = url;
-    }
-
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
-  </script>
+  </main>
 </body>
 </html>
-
-
-

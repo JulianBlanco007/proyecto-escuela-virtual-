@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="platform-screen">
+    <header>
+       <img src="img/imagen1.png" class="img1" />
+      <div class="logo"></div>
+      <div class="profile">
+        <span id="username"></span>
+        <img src="https://i.pravatar.cc/40" alt="Perfil" />
+        <button onclick="logout()">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <aside class="sidebar">
+        <h2>Clases</h2>
+        <ul id="class-list">
+          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')">Clase 1</li>
+          <li onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')">Clase 2</li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <h2 id="class-title">Selecciona una clase</h2>
+        <div class="video-container">
+          <iframe id="video-frame" width="50%" height="400" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="progress">
+          <label>Progreso: 50%</label>
+          <progress value="50" max="100"></progress>
+        </div>
+
+        <div class="comments">
+          <h3>Comentarios</h3>
+          <textarea placeholder="Escribe tu comentario..."></textarea>
+          <button onclick="alert('Comentario enviado (simulado)')">Enviar</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const name = localStorage.getItem("user");
+      if (name) {
+        document.getElementById("username").textContent = "Hola, " + name;
+      } else {
+        window.location.href = "login.html";
+      }
+    };
+
+    function loadVideo(title, url) {
+      document.getElementById('class-title').innerText = title;
+      document.getElementById('video-frame').src = url;
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+
+
+
