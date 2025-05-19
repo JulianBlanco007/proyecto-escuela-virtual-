@@ -1,128 +1,162 @@
-<!DOCTYPE html>
+<!-- clases.html -->
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SION - Clases</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="platform-screen">
-    <header>
-      <img src="img/imagen1.png" class="img1" />
-      <div class="logo"></div>
-      <div class="profile">
-        <span id="username"></span>
-        <img src="https://i.pravatar.cc/40" alt="Perfil" />
-        <button onclick="logout()">Cerrar sesión</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SION - Clases</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="platform-screen">
+      <header>
+        <img src="img/imagen1.png" class="img1" />
+        <div class="logo"></div>
+        <div class="profile">
+          <span id="username"></span>
+          <img src="https://i.pravatar.cc/40" alt="Perfil" />
+          <a href="perfil.html" class="perfil-icono" title="Mi perfil">👤</a>
+
+          <button onclick="logout()">Cerrar sesión</button>
+        </div>
+      </header>
+
+      <div class="container">
+        <aside class="sidebar">
+          <h2>Clases</h2>
+          <ul id="class-list">
+            <li
+              onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')"
+              class="active"
+            >
+              Clase 1
+            </li>
+            <li
+              onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')"
+            >
+              Clase 2
+            </li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <h2 id="class-title">Selecciona una clase</h2>
+          <div class="video-container">
+            <div id="video-frame-container"></div>
+          </div>
+
+          <div id="modal-questionnaire" class="modal hidden">
+            <div class="modal-content">
+              <h3 id="question-title"></h3>
+              <textarea
+                id="answer"
+                placeholder="Escribe tu respuesta..."
+              ></textarea>
+              <button id="submit-answer-btn">Enviar</button>
+            </div>
+          </div>
+
+          <div class="progress">
+            <label>Progreso: 50%</label>
+            <progress value="50" max="100"></progress>
+          </div>
+
+          <div class="comments">
+            <h3>Comentarios</h3>
+            <textarea placeholder="Escribe tu comentario..."></textarea>
+            <button onclick="alert('Comentario enviado (simulado)')">
+              Enviar
+            </button>
+          </div>
+        </main>
       </div>
-    </header>
-
-    <div class="container">
-      <aside class="sidebar">
-        <h2>Clases</h2>
-        <ul id="class-list">
-          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')" class="active">Clase 1</li>
-          <li onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')">Clase 2</li>
-        </ul>
-      </aside>
-
-      <main class="content">
-        <h2 id="class-title">Selecciona una clase</h2>
-        <div class="video-container">
-          <iframe id="video-frame" width="50%" height="400" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-        <!-- Cuestionario al finalizar video -->
-        <div id="questionnaire" class="hidden">
-          <h3 id="question-title"></h3>
-          <textarea id="answer" placeholder="Escribe tu respuesta..."></textarea>
-          <button onclick="submitAnswer()">Enviar</button>
-        </div>
-
-        <div class="progress">
-          <label>Progreso: 50%</label>
-          <progress value="50" max="100"></progress>
-        </div>
-
-        <div class="comments">
-          <h3>Comentarios</h3>
-          <textarea placeholder="Escribe tu comentario..."></textarea>
-          <button onclick="alert('Comentario enviado (simulado)')">Enviar</button>
-        </div>
-      </main>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    const questions = [
-      "¿Qué le llamó la atención?",
-      "¿Les surgió alguna duda o pregunta?",
-      "¿A qué les retó el tema y cómo asumirás el reto?"
-    ];
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      const questions = [
+        '¿Qué le llamó la atención?',
+        '¿Les surgió alguna duda o pregunta?',
+        '¿A qué les retó el tema y cómo asumirás el reto?',
+      ];
 
-    let currentQuestionIndex = 0;
-    let answers = [];
-    let player;
+      let currentQuestionIndex = 0;
+      let answers = [];
+      let player;
 
-    const questionnaire = document.getElementById("questionnaire");
-    const questionTitle = document.getElementById("question-title");
-    const answerInput = document.getElementById("answer");
+      const questionnaire = document.getElementById('modal-questionnaire');
 
-    window.onload = () => {
-      const name = localStorage.getItem("user");
-      if (name) {
-        document.getElementById("username").textContent = "Hola, " + name;
-      } else {
-        window.location.href = "login.html";
+      const questionTitle = document.getElementById('question-title');
+      const answerInput = document.getElementById('answer');
+
+      window.onload = () => {
+        const name = localStorage.getItem('user');
+        if (name) {
+          document.getElementById('username').textContent = 'Hola, ' + name;
+        } else {
+          window.location.href = 'login.html';
+        }
+
+        document.querySelector('#class-list li.active')?.click();
+      };
+
+      function loadVideo(title, url) {
+        document.getElementById('class-title').innerText = title;
+        questionnaire.classList.add('hidden');
+        currentQuestionIndex = 0;
+        answers = [];
+        answerInput.value = '';
+
+        const videoId = url.split('/embed/')[1];
+
+        // Elimina el reproductor anterior si existe
+        if (player && typeof player.destroy === 'function') {
+          player.destroy();
+        }
+
+        // Limpia el contenedor e inserta uno nuevo
+        const container = document.getElementById('video-frame-container');
+        container.innerHTML = `<div id="video-frame"></div>`;
+
+        player = new YT.Player('video-frame', {
+          height: '400',
+          width: '100%',
+          videoId: videoId,
+          events: {
+            onStateChange: function (event) {
+              if (event.data === YT.PlayerState.ENDED) {
+                onVideoEnded();
+              }
+            },
+          },
+        });
+
+        // Actualiza clases activas
+        const items = document.querySelectorAll('#class-list li');
+        items.forEach((i) => i.classList.remove('active'));
+        event.target.classList.add('active');
       }
 
-      // Cargar el primer video automáticamente
-      document.querySelector("#class-list li.active")?.click();
-    };
-
-    function loadVideo(title, url) {
-      document.getElementById('class-title').innerText = title;
-
-      if (player && player.loadVideoByUrl) {
-        player.loadVideoByUrl(url.replace("embed/", "watch?v="));
-      } else {
-        document.getElementById('video-frame').src = url + "?enablejsapi=1";
+      function onVideoEnded() {
+        questionnaire.classList.remove('hidden');
+        showQuestion();
       }
 
-      currentQuestionIndex = 0;
-      answers = [];
-      questionnaire.classList.add("hidden");
-      answerInput.value = "";
+      function showQuestion() {
+        questionTitle.textContent = questions[currentQuestionIndex];
+        answerInput.value = '';
+      }
 
-      // Marcar clase activa
-      const items = document.querySelectorAll("#class-list li");
-      items.forEach(i => i.classList.remove("active"));
-      event.target.classList.add("active");
-    }
-
-    function onVideoEnded() {
-      questionnaire.classList.remove("hidden");
-      showQuestion();
-    }
-
-    function showQuestion() {
-      questionTitle.textContent = questions[currentQuestionIndex];
-      answerInput.value = "";
-    }
-
-    function submitAnswer() {
+     function submitAnswer() {
   const answer = answerInput.value.trim();
   if (!answer) {
-    alert("Por favor escribe tu respuesta.");
+    alert('Por favor escribe tu respuesta.');
     return;
   }
 
   answers.push({
     pregunta: questions[currentQuestionIndex],
-    respuesta: answer
+    respuesta: answer,
   });
 
   currentQuestionIndex++;
@@ -131,61 +165,54 @@
     showQuestion();
   } else {
     saveAnswers();
-    questionnaire.classList.add("hidden");
+    questionnaire.classList.add('hidden');
     goToNextClass();
   }
 }
 
-function saveAnswers() {
-  const classTitle = document.getElementById('class-title').innerText || "Clase desconocida";
 
-  // Guardar respuestas como JSON en localStorage
-  localStorage.setItem(`respuestas_${classTitle}`, JSON.stringify(answers));
-
-  console.log(`Respuestas de ${classTitle} guardadas`, answers);
-}
-
-
-    function goToNextClass() {
-      const items = document.querySelectorAll("#class-list li");
-      let currentIndex = -1;
-
-      items.forEach((item, index) => {
-        if (item.classList.contains("active")) {
-          currentIndex = index;
-          item.classList.remove("active");
-        }
-      });
-
-      if (currentIndex + 1 < items.length) {
-        const nextItem = items[currentIndex + 1];
-        nextItem.classList.add("active");
-        nextItem.click();
-      } else {
-        alert("¡Has completado todas las clases!");
+      function saveAnswers() {
+        const classTitle =
+          document.getElementById('class-title').innerText ||
+          'Clase desconocida';
+        localStorage.setItem(
+          `respuestas_${classTitle}`,
+          JSON.stringify(answers),
+        );
+        console.log(`Respuestas de ${classTitle} guardadas`, answers);
       }
-    }
 
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
-    }
+      function goToNextClass() {
+        const items = document.querySelectorAll('#class-list li');
+        let currentIndex = -1;
 
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('video-frame', {
-        events: {
-          'onStateChange': function (event) {
-            if (event.data === YT.PlayerState.ENDED) {
-              onVideoEnded();
-            }
+        items.forEach((item, index) => {
+          if (item.classList.contains('active')) {
+            currentIndex = index;
+            item.classList.remove('active');
           }
+        });
+
+        if (currentIndex + 1 < items.length) {
+          const nextItem = items[currentIndex + 1];
+          nextItem.classList.add('active');
+          nextItem.click();
+        } else {
+          alert('¡Has completado todas las clases!');
         }
-      });
-    }
-  </script>
-</body>
+      }
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+      }
+
+      function onYouTubeIframeAPIReady() {
+        // El reproductor se inicializa dentro de loadVideo.
+      }
+
+      document.getElementById('submit-answer-btn').addEventListener('click', submitAnswer);
+
+    </script>
+  </body>
 </html>
-
-
-
-

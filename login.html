@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div id="login-screen">
+  <div id="login-screen" class="card">
     <h1>Bienvenido a Mi Plataforma</h1>
     <p class="quote">"El aprendizaje constante es el camino al éxito."</p>
     <input type="text" placeholder="Usuario" id="user" />
@@ -17,13 +17,24 @@
 
   <script>
     function fakeLogin() {
-      const user = document.getElementById('user').value;
-      const pass = document.getElementById('pass').value;
+      const user = document.getElementById('user').value.trim();
+      const pass = document.getElementById('pass').value.trim();
 
       const validUser = "admin";
       const validPass = "1234";
 
       if (user === validUser && pass === validPass) {
+        // Crear datos de perfil si no existen
+        if (!localStorage.getItem("profile")) {
+          const profile = {
+            username: user,
+            nombre: "Nombre de Ejemplo",
+            correo: "ejemplo@correo.com",
+            bio: "Aquí va una breve biografía."
+          };
+          localStorage.setItem("profile", JSON.stringify(profile));
+        }
+
         localStorage.setItem("user", user);
         window.location.href = "index.html";
       } else {

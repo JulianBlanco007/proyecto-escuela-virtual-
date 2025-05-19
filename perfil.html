@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Perfil</title>
+  <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+  <div class="profile-container">
+    <h2>Mi Perfil</h2>
+    <div class="profile-card">
+      <img id="profile-pic" src="https://i.pravatar.cc/100" alt="Foto de perfil">
+      <input type="file" id="upload-photo" accept="image/*">
+      <label for="upload-photo" class="btn">Cambiar Foto</label>
+
+      <input type="text" id="profile-name" placeholder="Nombre completo">
+      <input type="email" id="profile-email" placeholder="Correo electrónico">
+      <textarea id="profile-bio" placeholder="Biografía..."></textarea>
+
+      <button class="btn save" onclick="saveProfile()">Guardar Cambios</button>
+      <button class="btn logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <script>
+    // Cargar datos al inicio
+    window.onload = function() {
+      const data = JSON.parse(localStorage.getItem("perfil")) || {};
+      if (data.name) document.getElementById("profile-name").value = data.name;
+      if (data.email) document.getElementById("profile-email").value = data.email;
+      if (data.bio) document.getElementById("profile-bio").value = data.bio;
+      if (data.photo) document.getElementById("profile-pic").src = data.photo;
+    };
+
+    // Guardar datos
+    function saveProfile() {
+      const name = document.getElementById("profile-name").value;
+      const email = document.getElementById("profile-email").value;
+      const bio = document.getElementById("profile-bio").value;
+      const photo = document.getElementById("profile-pic").src;
+
+      const data = { name, email, bio, photo };
+      localStorage.setItem("perfil", JSON.stringify(data));
+      alert("Perfil actualizado correctamente.");
+    }
+
+    // Cerrar sesión
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    // Cambiar foto
+    document.getElementById("upload-photo").addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById("profile-pic").src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
