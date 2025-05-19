@@ -172,4 +172,38 @@ button:hover {
   transform: scale(1.05);
 }
 
+
+#questionnaire {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px solid #FFE043;
+  border-radius: 10px;
+  background-color: #fff8dc;
+  color: #000;
+}
+
+#questionnaire h3 {
+  margin-bottom: 1rem;
+  color: #3d39ff;
+}
+
+#questionnaire textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+#questionnaire button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #3d39ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
   

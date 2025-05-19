@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-
+  <title>SION - Clases</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="platform-screen">
     <header>
-       <img src="img/imagen1.png" class="img1" />
+      <img src="img/imagen1.png" class="img1" />
       <div class="logo"></div>
       <div class="profile">
         <span id="username"></span>
@@ -23,7 +22,7 @@
       <aside class="sidebar">
         <h2>Clases</h2>
         <ul id="class-list">
-          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')">Clase 1</li>
+          <li onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')" class="active">Clase 1</li>
           <li onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')">Clase 2</li>
         </ul>
       </aside>
@@ -32,6 +31,13 @@
         <h2 id="class-title">Selecciona una clase</h2>
         <div class="video-container">
           <iframe id="video-frame" width="50%" height="400" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <!-- Cuestionario al finalizar video -->
+        <div id="questionnaire" class="hidden">
+          <h3 id="question-title"></h3>
+          <textarea id="answer" placeholder="Escribe tu respuesta..."></textarea>
+          <button onclick="submitAnswer()">Enviar</button>
         </div>
 
         <div class="progress">
@@ -48,7 +54,23 @@
     </div>
   </div>
 
+  <!-- Scripts -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+    const questions = [
+      "¿Qué le llamó la atención?",
+      "¿Les surgió alguna duda o pregunta?",
+      "¿A qué les retó el tema y cómo asumirás el reto?"
+    ];
+
+    let currentQuestionIndex = 0;
+    let answers = [];
+    let player;
+
+    const questionnaire = document.getElementById("questionnaire");
+    const questionTitle = document.getElementById("question-title");
+    const answerInput = document.getElementById("answer");
+
     window.onload = () => {
       const name = localStorage.getItem("user");
       if (name) {
@@ -56,20 +78,114 @@
       } else {
         window.location.href = "login.html";
       }
+
+      // Cargar el primer video automáticamente
+      document.querySelector("#class-list li.active")?.click();
     };
 
     function loadVideo(title, url) {
       document.getElementById('class-title').innerText = title;
-      document.getElementById('video-frame').src = url;
+
+      if (player && player.loadVideoByUrl) {
+        player.loadVideoByUrl(url.replace("embed/", "watch?v="));
+      } else {
+        document.getElementById('video-frame').src = url + "?enablejsapi=1";
+      }
+
+      currentQuestionIndex = 0;
+      answers = [];
+      questionnaire.classList.add("hidden");
+      answerInput.value = "";
+
+      // Marcar clase activa
+      const items = document.querySelectorAll("#class-list li");
+      items.forEach(i => i.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+
+    function onVideoEnded() {
+      questionnaire.classList.remove("hidden");
+      showQuestion();
+    }
+
+    function showQuestion() {
+      questionTitle.textContent = questions[currentQuestionIndex];
+      answerInput.value = "";
+    }
+
+    function submitAnswer() {
+  const answer = answerInput.value.trim();
+  if (!answer) {
+    alert("Por favor escribe tu respuesta.");
+    return;
+  }
+
+  answers.push({
+    pregunta: questions[currentQuestionIndex],
+    respuesta: answer
+  });
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    saveAnswers();
+    questionnaire.classList.add("hidden");
+    goToNextClass();
+  }
+}
+
+function saveAnswers() {
+  const classTitle = document.getElementById('class-title').innerText || "Clase desconocida";
+
+  // Guardar respuestas como JSON en localStorage
+  localStorage.setItem(`respuestas_${classTitle}`, JSON.stringify(answers));
+
+  console.log(`Respuestas de ${classTitle} guardadas`, answers);
+}
+
+
+    function goToNextClass() {
+      const items = document.querySelectorAll("#class-list li");
+      let currentIndex = -1;
+
+      items.forEach((item, index) => {
+        if (item.classList.contains("active")) {
+          currentIndex = index;
+          item.classList.remove("active");
+        }
+      });
+
+      if (currentIndex + 1 < items.length) {
+        const nextItem = items[currentIndex + 1];
+        nextItem.classList.add("active");
+        nextItem.click();
+      } else {
+        alert("¡Has completado todas las clases!");
+      }
     }
 
     function logout() {
       localStorage.clear();
       window.location.href = "login.html";
     }
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('video-frame', {
+        events: {
+          'onStateChange': function (event) {
+            if (event.data === YT.PlayerState.ENDED) {
+              onVideoEnded();
+            }
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
+
 
 
 
