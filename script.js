@@ -20,10 +20,8 @@ function loadVideo(title, url) {
   document.getElementById('class-title').innerText = title;
 
   if (player && player.loadVideoByUrl) {
-    // Cambia el video si el reproductor ya fue inicializado
     player.loadVideoByUrl(url.replace("embed/", "watch?v="));
   } else {
-    // Primera carga del iframe (para iframe sin API todavía activa)
     video.src = url + "?enablejsapi=1";
   }
 
@@ -32,7 +30,6 @@ function loadVideo(title, url) {
   questionnaire.classList.add("hidden");
   answerInput.value = "";
 
-  // Marcar como activa
   const listItems = document.querySelectorAll("#class-list li");
   listItems.forEach(item => item.classList.remove("active"));
   event.target.classList.add("active");
@@ -101,7 +98,7 @@ function fakeLogin() {
 
   if (user && pass) {
     localStorage.setItem("user", user);
-    window.location.href = "index.html"; // o la página de bienvenida
+    window.location.href = "index.html";
   } else {
     alert('Por favor ingresa usuario y contraseña');
   }
@@ -134,3 +131,17 @@ function onYouTubeIframeAPIReady() {
     },
   });
 }
+
+// Mostrar/ocultar menú del perfil
+function toggleDropdown() {
+  const menu = document.getElementById("dropdown-menu");
+  menu.classList.toggle("hidden");
+}
+
+// Cerrar el menú al hacer clic fuera
+window.addEventListener('click', function (e) {
+  const dropdown = document.querySelector('.dropdown');
+  if (!dropdown.contains(e.target)) {
+    document.getElementById('dropdown-menu')?.classList.add('hidden');
+  }
+});

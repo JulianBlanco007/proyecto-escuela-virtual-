@@ -1,16 +1,19 @@
-body {
+/* ========== ESTILOS BASE ========== */
+body, html {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #000000;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #333;
+  background: linear-gradient(to right, #eadf66, #664cc4);
 }
 
+/* ========== HEADER Y PERFIL ========== */
 header {
-  background-color: #FFE043;
-  padding: 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background-color: #ffdd57;
+  padding: 10px 20px;
 }
 
 .logo {
@@ -21,9 +24,99 @@ header {
 .profile {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
+#username {
+  font-size: 14px;
+  text-align: right;
+  line-height: 1.2;
+  margin-right: 10px;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.profile button {
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile button:hover {
+  background-color: #3f51b5;
+}
+
+.perfil-icono,
+.btn-perfil {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.perfil-icono:hover,
+.btn-perfil:hover {
+  background-color: #2980b9;
+}
+
+/* Dropdown perfil */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-pic {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 1000;
+}
+
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* ========== LAYOUT PRINCIPAL ========== */
 .container {
   display: flex;
   height: calc(100vh - 70px);
@@ -40,7 +133,7 @@ header {
   margin: 10px 0;
   padding: 10px;
   cursor: pointer;
-  color: #000000;
+  color: #000;
   border: 2px solid #ccc;
   border-radius: 8px;
   transition: border-color 0.3s, background-color 0.3s;
@@ -63,6 +156,7 @@ header {
   padding: 2rem;
 }
 
+/* ========== VIDEO Y PROGRESO ========== */
 .video-container {
   margin-bottom: 1rem;
 }
@@ -72,8 +166,36 @@ header {
   color: #bb86fc;
 }
 
+.progress label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #e0e0e0;
+}
+
+progress::-webkit-progress-value {
+  background-color: #3d39ff;
+  transition: width 0.5s ease;
+}
+
+/* ========== COMENTARIOS ========== */
 .comments {
   margin-top: 2rem;
+}
+
+.comments h3 {
+  color: #3d39ff;
 }
 
 .comments textarea {
@@ -85,32 +207,114 @@ header {
 }
 
 .comments button {
-  background-color: #4235ff;
+  padding: 10px 20px;
+  background-color: #3d39ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.image-container {
-  position: absolute;
+.comments button:hover {
+  background-color: #2c2bbd;
+}
+
+/* ========== FORMULARIO DE CUESTIONARIO ========== */
+#questionnaire {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px solid #FFE043;
+  border-radius: 10px;
+  background-color: #fff8dc;
+  color: #000;
+}
+
+#questionnaire h3 {
+  margin-bottom: 1rem;
+  color: #3d39ff;
+}
+
+#questionnaire textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+#questionnaire button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #3d39ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ========== MODAL ========== */
+.modal {
+  position: fixed;
   top: 0;
   left: 0;
-  background-color: yellow;
-  padding: 5px;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-.img1 {
-  width: 164px;
-  height: auto;
+.modal.hidden {
+  display: none;
 }
 
-  /* index */
-  body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #FFE043, #3d39ff);
-  color: #333;
+.modal-content {
+  background: #fff8dc;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
 }
 
+.modal-content h3 {
+  color: #3d39ff;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.modal-content textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* ========== INDEX - PANTALLA DE BIENVENIDA ========== */
 .bienvenida {
   display: flex;
   justify-content: center;
@@ -164,258 +368,7 @@ header {
   margin-top: 30px;
 }
 
-button {
-  padding: 12px 20px;
-  background-color: #3d39ff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-}
-
-button:hover {
-  background-color: #2c2bbd;
-  transform: scale(1.05);
-}
-
-
-#questionnaire {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border: 2px solid #FFE043;
-  border-radius: 10px;
-  background-color: #fff8dc;
-  color: #000;
-}
-
-#questionnaire h3 {
-  margin-bottom: 1rem;
-  color: #3d39ff;
-}
-
-#questionnaire textarea {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: vertical;
-}
-
-#questionnaire button {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  background-color: #3d39ff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* ======== ESTILOS PARA CLASES.HTML ======== */
-#questionnaire {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border: 2px solid #FFE043;
-  border-radius: 10px;
-  background-color: #fff8dc;
-  color: #000;
-}
-
-#questionnaire h3 {
-  margin-bottom: 1rem;
-  color: #3d39ff;
-}
-
-#questionnaire textarea {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: vertical;
-}
-
-#questionnaire button {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  background-color: #3d39ff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-/* ========================================== */
-
-
-  /* Progreso visual mejorado */
-.progress label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-progress {
-  width: 100%;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  appearance: none;
-}
-
-progress::-webkit-progress-bar {
-  background-color: #e0e0e0;
-}
-
-progress::-webkit-progress-value {
-  background-color: #3d39ff;
-  transition: width 0.5s ease;
-}
-
-/* Comentarios */
-.comments h3 {
-  color: #3d39ff;
-}
-
-.comments button {
-  padding: 10px 20px;
-  background-color: #3d39ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.comments button:hover {
-  background-color: #2c2bbd;
-}
-
-/* Modal pantalla emergente */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.modal-content {
-  background-color: #fff8dc;
-  border-radius: 12px;
-  padding: 2rem;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.modal-content h3 {
-  color: #3d39ff;
-  margin: 0;
-}
-
-.modal-content textarea {
-  width: 100%;
-  height: 120px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 1rem;
-}
-
-.modal-content button {
-  align-self: flex-end;
-  background-color: #3d39ff;
-  color: white;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.modal-content button:hover {
-  background-color: #2c2bbd;
-}
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal-content h3 {
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.modal-content textarea {
-  width: 100%;
-  height: 120px;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  resize: none;
-}
-
-.modal-content button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.modal-content button:hover {
-  background-color: #0056b3;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #eadf66, #664cc4);
-  color: #333;
-}
-
+/* ========== FORMULARIOS E INPUTS ========== */
 .centered {
   display: flex;
   justify-content: center;
@@ -424,7 +377,7 @@ body {
 }
 
 .card {
-  background: rgb(255, 255, 255);
+  background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -440,38 +393,40 @@ input {
   border: 1px solid #ccc;
 }
 
+/* ========== BOTONES GENERALES ========== */
 button {
   width: 100%;
   padding: 10px;
   background: #667eea;
   border: none;
   border-radius: 8px;
-  color: rgb(255, 255, 255);
+  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-bottom: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background: #5a67d8;
+  background-color: #5a67d8;
+  transform: scale(1.05);
 }
-.btn-perfil, .perfil-icono {
 
-  top: 20px;
-  right: 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 14px;
+/* ========== UTILIDADES ========== */
+.hidden {
+  display: none;
+}
+
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: yellow;
+  padding: 5px;
   border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  z-index: 1000;
 }
 
-.btn-perfil:hover, .perfil-icono:hover {
-  background-color: #2980b9;
+.img1 {
+  width: 164px;
+  height: auto;
 }
