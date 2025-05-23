@@ -21,7 +21,7 @@ header {
 .profile {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .container {
@@ -35,19 +35,27 @@ header {
   padding: 1rem;
 }
 
-.sidebar h2 {
-  color: #0059ff;
-}
-
 .sidebar li {
   list-style: none;
   margin: 10px 0;
+  padding: 10px;
   cursor: pointer;
   color: #000000;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, background-color 0.3s;
 }
 
 .sidebar li:hover {
   color: #bb86fc;
+  border-color: #3d39ff;
+  background-color: #f5f5ff;
+}
+
+.sidebar li.active {
+  background-color: #e6f2ff;
+  border-color: #3d39ff;
+  font-weight: bold;
 }
 
 .content {

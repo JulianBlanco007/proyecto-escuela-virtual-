@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #fef9e7, #e8f8ff);
+  background: linear-gradient(to right, #ffdf6a, #728cff);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,13 +9,13 @@ body {
 }
 
 .profile-container {
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   width: 380px;
   animation: fadeIn 0.5s ease-in-out;
-  border-top: 6px solid #f1c40f;
+  border-top: 2px solid #f1c40f;
 }
 
 h2 {
@@ -45,7 +45,7 @@ h2 {
   width: 100%;
   padding: 12px 15px;
   margin-bottom: 12px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #000000;
   border-radius: 8px;
   outline: none;
   font-size: 14px;
