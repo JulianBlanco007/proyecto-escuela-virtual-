@@ -102,7 +102,7 @@
         } else {
           window.location.href = 'login.html';
         }
-
+        updateProgress();
         document.querySelector('#class-list li.active')?.click();
       };
 
@@ -181,7 +181,20 @@
           `respuestas_${classTitle}`,
           JSON.stringify(answers),
         );
-        console.log(`Respuestas de ${classTitle} guardadas`, answers);
+
+        // Marcar clase como completada
+        let completadas = JSON.parse(
+          localStorage.getItem('clases_completadas') || '[]',
+        );
+        if (!completadas.includes(classTitle)) {
+          completadas.push(classTitle);
+          localStorage.setItem(
+            'clases_completadas',
+            JSON.stringify(completadas),
+          );
+        }
+
+        updateProgress();
       }
 
       function goToNextClass() {
@@ -233,6 +246,20 @@
           dropdownMenu.classList.add('hidden');
         }
       });
+
+      function updateProgress() {
+        const totalClases = document.querySelectorAll('#class-list li').length;
+        const completadas = JSON.parse(
+          localStorage.getItem('clases_completadas') || '[]',
+        );
+        const progreso = Math.floor((completadas.length / totalClases) * 100);
+
+        const progressBar = document.querySelector('.progress progress');
+        const progressLabel = document.querySelector('.progress label');
+
+        progressBar.value = progreso;
+        progressLabel.textContent = `Progreso: ${progreso}%`;
+      }
     </script>
   </body>
 </html>
