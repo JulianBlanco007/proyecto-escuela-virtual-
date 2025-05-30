@@ -8,25 +8,31 @@
   </head>
   <body>
     <div id="platform-screen">
-      <header>
-        <img src="img/imagen1.png" class="img1" />
-        <div class="logo"></div>
-        <div class="profile">
-          <span id="username"></span>
-          <div class="dropdown">
-            <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-              alt="Perfil"
-              class="profile-pic"
-              id="profilePic"
-            />
-            <div id="dropdownMenu" class="dropdown-menu hidden">
-              <a href="perfil.html">👤 Mi perfil</a>
-              <a href="#" onclick="logout()">🔒 Cerrar sesión</a>
-            </div>
-          </div>
-        </div>
-      </header>
+      <header class="navbar">
+  <img src="img/imagen1.png" class="img1" alt="Logo Plataforma" />
+  
+  <nav class="nav-links">
+    <a href="index.html">Acerca de nosotros</a>
+    <a href="clases.html">Clases</a>
+  </nav>
+
+  <div class="profile">
+    <span id="username"></span>
+    <div class="dropdown">
+      <img
+        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        alt="Perfil"
+        class="profile-pic"
+        id="profilePic"
+      />
+      <div id="dropdownMenu" class="dropdown-menu hidden">
+        <a href="perfil.html">👤 Mi perfil</a>
+        <a href="#" onclick="logout()">🔒 Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+</header>
+
 
       <div class="container">
         <aside class="sidebar">
@@ -264,12 +270,5 @@
       }
     </script>
   </body>
-  <nav class="navbar">
-  <div class="navbar-logo">Mi Plataforma</div>
-  <ul class="navbar-links">
-    <li><a href="index.html">Sobre nosotros </a></li>
-    <li><a href="clases.html">Clases</a></li>
-    <li><a href="#" onclick="logout()">Cerrar sesión</a></li>
-  </ul>
-</nav>
+ 
 </html>
