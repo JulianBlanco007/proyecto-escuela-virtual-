@@ -15,7 +15,7 @@
           <span id="username"></span>
           <div class="dropdown">
             <img
-              src="https://i.pravatar.cc/40"
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               alt="Perfil"
               class="profile-pic"
               id="profilePic"
@@ -33,10 +33,12 @@
           <h2>Clases</h2>
           <ul id="class-list">
             <li
-              onclick="loadVideo('Clase 1', 'https://www.youtube.com/embed/XeXFUoazjrQ')"
+              onclick="loadVideo('LECCION 1. ¿QUÉ ES EL REINO DE DIOS?', 'https://www.youtube.com/embed/XeXFUoazjrQ')"
               class="active"
             >
+            
               Clase 1
+              
             </li>
             <li
               onclick="loadVideo('Clase 2', 'https://www.youtube.com/embed/3vl7kPIRzsY')"
@@ -262,4 +264,13 @@
       }
     </script>
   </body>
+  <nav class="navbar">
+  <div class="navbar-logo">Mi Plataforma</div>
+  <ul class="navbar-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="clases.html">Clases</a></li>
+    <li><a href="perfil.html">Perfil</a></li>
+    <li><a href="#" onclick="logout()">Cerrar sesión</a></li>
+  </ul>
+</nav>
 </html>

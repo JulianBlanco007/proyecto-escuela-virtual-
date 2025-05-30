@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #ffdf6a, #728cff);
+  background: linear-gradient(to right, #ffffff, #728cff);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,16 +78,16 @@ h2 {
 }
 
 .btn:hover {
-  background-color: #f39c12;
+  background-color: #7b86ff;
   transform: scale(1.03);
 }
 
 .logout {
-  background-color: #2980b9;
+  background-color: #4b59ff;
 }
 
 .logout:hover {
-  background-color: #2471a3;
+  background-color: #76c1f4;
 }
 
 @keyframes fadeIn {

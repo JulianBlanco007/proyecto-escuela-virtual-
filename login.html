@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div id="login-screen" class="card">
+  <div id="login-screen" class="form-box">
     <h1>Bienvenido a Mi Plataforma</h1>
-    <p class="quote">"El aprendizaje constante es el camino al éxito."</p>
+    <p class="quote">"Transformando mentes, edificando en principios del Reino"</p>
     <input type="text" placeholder="Usuario" id="user" />
     <input type="password" placeholder="Contraseña" id="pass" />
     <button onclick="fakeLogin()">Iniciar sesión</button>
@@ -24,7 +24,6 @@
       const validPass = "1234";
 
       if (user === validUser && pass === validPass) {
-        // Crear datos de perfil si no existen
         if (!localStorage.getItem("profile")) {
           const profile = {
             username: user,
@@ -36,7 +35,7 @@
         }
 
         localStorage.setItem("user", user);
-        window.location.href = "index.html";
+        window.location.href = "clases.html";
       } else {
         alert("Usuario o contraseña incorrectos.");
       }
