@@ -1,46 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Mi Plataforma</title>
-  <link rel="stylesheet" href="login.css">
-</head>
-<body>
-  <div id="login-screen" class="form-box">
-    <h1>Bienvenido a Mi Plataforma</h1>
-    <p class="quote">"Transformando mentes, edificando en principios del Reino"</p>
-    <input type="text" placeholder="Usuario" id="user" />
-    <input type="password" placeholder="Contraseña" id="pass" />
-    <button onclick="fakeLogin()">Iniciar sesión</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Mi Plataforma</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div id="login-screen" class="form-box">
+      <h1>Bienvenido a Mi Plataforma</h1>
+      <p class="quote">
+        "Transformando mentes, edificando en principios del Reino"
+      </p>
+      <input type="text" placeholder="Usuario" id="user" />
+      <input type="password" placeholder="Contraseña" id="pass" />
+      <button onclick="fakeLogin()">Iniciar sesión</button>
+    </div>
 
-  <script>
-    function fakeLogin() {
-      const user = document.getElementById('user').value.trim();
-      const pass = document.getElementById('pass').value.trim();
+    <script>
+      function fakeLogin() {
+        const user = document.getElementById('user').value.trim();
+        const pass = document.getElementById('pass').value.trim();
 
-      const validUser = "admin";
-      const validPass = "1234";
+        const validUser = 'admin';
+        const validPass = '1234';
 
-      if (user === validUser && pass === validPass) {
-        if (!localStorage.getItem("profile")) {
-          const profile = {
-            username: user,
-            nombre: "Nombre de Ejemplo",
-            correo: "ejemplo@correo.com",
-            bio: "Aquí va una breve biografía."
-          };
-          localStorage.setItem("profile", JSON.stringify(profile));
+        if (user === validUser && pass === validPass) {
+          if (!localStorage.getItem('profile')) {
+            const profile = {
+              username: user,
+              nombre: 'Nombre de Ejemplo',
+              correo: 'ejemplo@correo.com',
+              bio: 'Aquí va una breve biografía.',
+            };
+            localStorage.setItem('profile', JSON.stringify(profile));
+          }
+
+          localStorage.setItem('user', user);
+          window.location.href = 'clases.html';
+        } else {
+          alert('Usuario o contraseña incorrectos.');
         }
-
-        localStorage.setItem("user", user);
-        window.location.href = "clases.html";
-      } else {
-        alert("Usuario o contraseña incorrectos.");
       }
-    }
-  </script>
-</body>
+      window.onload = () => {
+        if (localStorage.getItem('user')) {
+          window.location.href = 'clases.html';
+        }
+      };
+    </script>
+  </body>
 </html>
-
