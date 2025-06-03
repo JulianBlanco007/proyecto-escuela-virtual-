@@ -5,53 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mi Perfil</title>
   <link rel="stylesheet" href="perfil.css">
+  <style>
+    .role-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
   <div class="profile-container">
     <h2>Mi Perfil</h2>
     <div class="profile-card">
+      <div id="role-icon" class="role-icon">👤</div>
       <img id="profile-pic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto de perfil">
       <input type="file" id="upload-photo" accept="image/*">
       <label for="upload-photo" class="btn">Cambiar Foto</label>
 
       <input type="text" id="profile-name" placeholder="Nombre completo">
       <input type="email" id="profile-email" placeholder="Correo electrónico">
+      <select id="profile-role">
+        <option value="">Seleccione su rol</option>
+        <option value="empresario">Empresario</option>
+        <option value="empleado">Empleado</option>
+      </select>
       <textarea id="profile-bio" placeholder="Biografía..."></textarea>
 
       <button class="btn save" onclick="saveProfile()">Guardar Cambios</button>
-      <button class="btn logout" onclick="logout()">Cerrar sesión</button>
+      <button class="btn back" onclick="goBack()">← Volver</button>
     </div>
   </div>
 
   <script>
-    // Cargar datos al inicio
+    function updateRoleIcon(role) {
+      const icon = document.getElementById("role-icon");
+      if (role === "empresario") {
+        icon.textContent = "💼";
+      } else if (role === "empleado") {
+        icon.textContent = "👷";
+      } else {
+        icon.textContent = "👤";
+      }
+    }
+
     window.onload = function() {
       const data = JSON.parse(localStorage.getItem("perfil")) || {};
       if (data.name) document.getElementById("profile-name").value = data.name;
       if (data.email) document.getElementById("profile-email").value = data.email;
       if (data.bio) document.getElementById("profile-bio").value = data.bio;
       if (data.photo) document.getElementById("profile-pic").src = data.photo;
+      if (data.role) {
+        document.getElementById("profile-role").value = data.role;
+        updateRoleIcon(data.role);
+      }
     };
 
-    // Guardar datos
     function saveProfile() {
       const name = document.getElementById("profile-name").value;
       const email = document.getElementById("profile-email").value;
+      const role = document.getElementById("profile-role").value;
       const bio = document.getElementById("profile-bio").value;
       const photo = document.getElementById("profile-pic").src;
 
-      const data = { name, email, bio, photo };
+      const data = { name, email, role, bio, photo };
       localStorage.setItem("perfil", JSON.stringify(data));
       alert("Perfil actualizado correctamente.");
     }
 
-    // Cerrar sesión
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
+    function goBack() {
+      window.location.href = "clases.html";
     }
 
-    // Cambiar foto
     document.getElementById("upload-photo").addEventListener("change", function(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -60,6 +83,11 @@
       };
       reader.readAsDataURL(file);
     });
+
+    document.getElementById("profile-role").addEventListener("change", function() {
+      updateRoleIcon(this.value);
+    });
   </script>
 </body>
 </html>
+
