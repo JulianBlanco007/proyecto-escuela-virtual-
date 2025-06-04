@@ -7,15 +7,19 @@ body, html {
   background: linear-gradient(to right, #ffffff, #4b59ff);
 }
 
+
+
 .nav-container {
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #1b1b1b;
-  padding: 10px 0;
+  gap: 1.5rem;
   display: flex;
+  padding: 10px 20px;
   justify-content: center;
   z-index: 1000;
+   margin-bottom: 20px;
 }
 
 .nav-links {
@@ -40,7 +44,7 @@ body, html {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding-top: 80px; /* espacio para la barra de navegación */
+  padding-top: 150px; /* espacio para la barra de navegación */
 }
 
 .welcome-content {
