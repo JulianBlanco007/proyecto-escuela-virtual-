@@ -23,11 +23,15 @@
 
       <input type="text" id="profile-name" placeholder="Nombre completo">
       <input type="email" id="profile-email" placeholder="Correo electrónico">
+      <input type="text" id="profile-country" placeholder="País">
+      <input type="text" id="profile-church" placeholder="Iglesia">
+      
       <select id="profile-role">
         <option value="">Seleccione su rol</option>
         <option value="empresario">Empresario</option>
         <option value="empleado">Empleado</option>
       </select>
+
       <textarea id="profile-bio" placeholder="Biografía..."></textarea>
 
       <button class="btn save" onclick="saveProfile()">Guardar Cambios</button>
@@ -52,6 +56,8 @@
       if (data.name) document.getElementById("profile-name").value = data.name;
       if (data.email) document.getElementById("profile-email").value = data.email;
       if (data.bio) document.getElementById("profile-bio").value = data.bio;
+      if (data.country) document.getElementById("profile-country").value = data.country;
+      if (data.church) document.getElementById("profile-church").value = data.church;
       if (data.photo) document.getElementById("profile-pic").src = data.photo;
       if (data.role) {
         document.getElementById("profile-role").value = data.role;
@@ -62,11 +68,13 @@
     function saveProfile() {
       const name = document.getElementById("profile-name").value;
       const email = document.getElementById("profile-email").value;
+      const country = document.getElementById("profile-country").value;
+      const church = document.getElementById("profile-church").value;
       const role = document.getElementById("profile-role").value;
       const bio = document.getElementById("profile-bio").value;
       const photo = document.getElementById("profile-pic").src;
 
-      const data = { name, email, role, bio, photo };
+      const data = { name, email, country, church, role, bio, photo };
       localStorage.setItem("perfil", JSON.stringify(data));
       alert("Perfil actualizado correctamente.");
     }
@@ -90,4 +98,3 @@
   </script>
 </body>
 </html>
-
