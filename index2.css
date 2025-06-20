@@ -1,86 +1,141 @@
- .nav-container {
-      background-color: #1b1b1b;
-      padding: 10px 20px;
-    }
+/* Estilos básicos para la página */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+/* Barra de navegación fija arriba */
+.nav-container {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  height: 70px; /* altura fija para mejor control */
+}
 
-    .nav-links img {
-      height: 50px;
-    }
+/* Logo a la izquierda */
+.nav-container .img1 {
+  height: 50px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
 
-    .nav-link1 {
-      display: flex;
-      gap: 20px;
-    }
+/* Menú centrado exactamente */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: white;
+  font-weight: bold;
 
-    .nav-link1 a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    .nav-link1 a:hover {
-      color: #ffd700;
-    }
+/* Estilos de enlaces normales y dropdown toggle */
+.nav-links a,
+.dropdown > a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
 
-    /* Estilo general */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
-      color: #000000;
-    }
+.nav-links a:hover,
+.dropdown > a:hover {
+  background-color: #0073e6;
+}
 
-    .bienvenida {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
 
-    .welcome-header {
-      text-align: center;
-      margin: 20px 0;
-    }
+/* Dropdown content */
+.dropdown-content {
+  display: none; /* oculto por defecto */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000000;
+  min-width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
 
-    .welcome-header h1 {
-      font-size: 2.5rem;
-      color: #3d39ff;
-      margin-bottom: 10px;
-    }
+/* Mostrar dropdown cuando tenga la clase show */
+.dropdown.show .dropdown-content {
+  display: block;
+}
 
-    .welcome-header p {
-      font-size: 1.2rem;
-      color: #555;
-    }
+/* Estilos enlaces dentro del dropdown */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
 
-    /* Galería de imágenes cuadradas en horizontal */
-    .image-gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 20px;
-      padding: 30px;
-      overflow-x: auto;
-    }
+.dropdown-content a:hover {
+  background-color: #000000;
+}
 
-    .image-gallery img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
+/* Opcional: Ajuste de padding para que la página no quede oculta debajo de la barra fija */
+body.bienvenida {
+  padding-top: 80px;
+}
 
-    .image-gallery img:hover {
-      transform: scale(1.05);
-    }
+/* Estilos para el header y galería (los que pusiste) */
+
+.welcome-header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.welcome-header h1 {
+  font-size: 2.5rem;
+  color: #3d39ff;
+  margin-bottom: 10px;
+}
+
+.welcome-header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Galería de imágenes cuadradas en horizontal */
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 30px;
+  overflow-x: auto;
+}
+
+.image-gallery img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
