@@ -125,3 +125,92 @@ nav a {
 .dot.active {
   background-color: #f0c000;
 }
+
+    /* Barra de navegación */
+    .nav-container {
+      background-color: #1b1b1b;
+      padding: 10px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .nav-links img {
+      height: 50px;
+    }
+
+    .nav-link1 {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link1 a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link1 a:hover {
+      color: #ffd700;
+    }
+
+    /* Estilo general */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .bienvenida {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .welcome-header {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .welcome-header h1 {
+      font-size: 2.5rem;
+      color: #3d39ff;
+      margin-bottom: 10px;
+    }
+
+    .welcome-header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* Galería de imágenes cuadradas en horizontal */
+    .image-gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 20px;
+      padding: 30px;
+      overflow-x: auto;
+    }
+
+    .image-gallery img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+  
