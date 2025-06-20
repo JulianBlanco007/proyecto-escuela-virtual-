@@ -71,6 +71,28 @@ button:active {
   font-size: 16px;
 }
 
+.titulo-principal {
+  margin-top: 90px; /* justo debajo de la barra */
+  text-align: center;
+  padding: 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.titulo-principal h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 0;
+  color: #1b1b1b;
+}
+
+.titulo-principal p {
+  font-size: 1.1rem;
+  margin-top: 8px;
+  color: #444;
+}
+
+
 /* Animaciones */
 @keyframes fadeSlideIn {
   0% {
@@ -88,5 +110,5 @@ button:active {
   to { opacity: 1; }
 }
 
-  
+
   
