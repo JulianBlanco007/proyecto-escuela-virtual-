@@ -8,17 +8,15 @@ body {
 
 /* Barra de navegación fija arriba */
 .nav-container {
-  background-color: #000000;
+   position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #1b1b1b;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  width: 100%;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  height: 70px; /* altura fija para mejor control */
+  justify-content: space-between;
+  padding: 10px 40px;
+  z-index: 1000;
 }
 
 /* Logo a la izquierda */
@@ -51,8 +49,10 @@ body {
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
+.nav-links a:hover {
+  color: #ffd700;
+}
 
-.nav-links a:hover,
 .dropdown > a:hover {
   background-color: #0073e6;
 }

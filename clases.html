@@ -9,36 +9,35 @@
   <body>
     <div id="platform-screen">
       <header class="navbar">
-  <img src="img/imagen7.png" class="img1" alt="Logo Plataforma" />
-  
-  <nav class="nav-links">
-  <div class="dropdown">
-    <a href="#">Acerca de nosotros</a>
-    <div class="dropdown-content">
-      <a href="index2.html">SION Asesorías y entrenamientos</a>
-      <a href="index.html">Escuela de Productividad</a>
-    </div>
-  </div>
-  <a href="clases.html">Escuela</a>
-</nav>
+        <img src="img/imagen7.png" class="img1" alt="Logo Plataforma" />
 
-  <div class="profile">
-    <span id="username"></span>
-    <div class="dropdown">
-      <img
-        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-        alt="Perfil"
-        class="profile-pic"
-        id="profilePic"
-      />
-      <div id="dropdownMenu" class="dropdown-menu hidden">
-        <a href="perfil.html">👤 Mi perfil</a>
-        <a href="index.html" onclick="logout()">🔒 Cerrar sesión</a>
-      </div>
-    </div>
-  </div>
-</header>
+        <nav class="nav-links">
+          <div class="dropdown">
+            <a href="#">Acerca de nosotros</a>
+            <div class="dropdown-content">
+              <a href="index2.html">SION Asesorías y entrenamientos</a>
+              <a href="index.html">Escuela de Productividad</a>
+            </div>
+          </div>
+          <a href="clases.html">Escuela</a>
+        </nav>
 
+        <div class="profile">
+          <span id="username"></span>
+          <div class="dropdown">
+            <img
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              alt="Perfil"
+              class="profile-pic"
+              id="profilePic"
+            />
+            <div id="dropdownMenu" class="dropdown-menu hidden">
+              <a href="perfil.html">👤 Mi perfil</a>
+              <a href="index.html" onclick="logout()">🔒 Cerrar sesión</a>
+            </div>
+          </div>
+        </div>
+      </header>
 
       <div class="container">
         <aside class="sidebar">
@@ -48,9 +47,7 @@
               onclick="loadVideo('LECCION 1. ¿QUÉ ES EL REINO DE DIOS?', 'https://www.youtube.com/embed/XeXFUoazjrQ')"
               class="active"
             >
-            
               Clase 1
-              
             </li>
             <li
               onclick="loadVideo('LECCION 2. NACION SANTA', 'https://www.youtube.com/embed/3vl7kPIRzsY')"
@@ -87,6 +84,13 @@
             <textarea placeholder="Escribe tu comentario..."></textarea>
             <button onclick="alert('Comentario enviado (simulado)')">
               Enviar
+            </button>
+          </div>
+
+          <!-- Botón de Socialización -->
+          <div class="socializacion">
+            <button onclick="window.location.href='socializacion.html'">
+              Socialización
             </button>
           </div>
         </main>
@@ -196,7 +200,6 @@
           JSON.stringify(answers),
         );
 
-        // Marcar clase como completada
         let completadas = JSON.parse(
           localStorage.getItem('clases_completadas') || '[]',
         );
@@ -236,9 +239,7 @@
         window.location.href = 'login.html';
       }
 
-      function onYouTubeIframeAPIReady() {
-        // El reproductor se inicializa dentro de loadVideo.
-      }
+      function onYouTubeIframeAPIReady() {}
 
       document
         .getElementById('submit-answer-btn')
@@ -276,5 +277,4 @@
       }
     </script>
   </body>
- 
 </html>
