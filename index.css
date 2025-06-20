@@ -1,217 +1,201 @@
-* {
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: url('img/imagen4.jpg') no-repeat center center fixed;
  
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #f2f2f2, #cccccc);
-  color: #000;
 }
- 
-/* Barra de navegación */
-header.navbar {
+
+/* NAV */
+.nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: #1b1b1b;
-  color: white;
-  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 40px;
+  z-index: 1000;
 }
- 
-header.navbar img {
-  height: 50px;
+
+.img1 {
+  width: 150px;
+  height: auto;
+  
 }
- 
-nav {
+
+.nav-links {
   display: flex;
-  align-items: center;
-  gap: 30px;
-  position: relative;
+  gap: 2rem;
+  justify-content: center;
+  flex: 1;
+  margin-right: 130px; /* espacio para la imagen */
 }
- 
-nav a {
+
+.nav-links a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  position: relative;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
- 
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+
+/* MAIN CONTENT */
+.bienvenida {
+  padding-top: 50px;
+  margin-bottom: 5px;
+   min-height: auto;
+  display: block;
+}
+
+.main-section {
+   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 100px 30px 40px; /* espacio para la barra de navegación */
+  /* 🌟 importante */
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-top: 10px; /* espacio para la barra de navegación */
+  
+}
+
+.info-left {
+   flex: 1;
+  max-height: calc(100vh - 150px); /* deja espacio para la barra superior */
+  overflow-y: auto;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-left::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+.info-left::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 4px;
+}
+
+.info-left::-webkit-scrollbar-track {
+  background-color: transparent;
+  
+}
+
+.info-box {
+  background-color: #9b9ca0;
+  padding: 10px;
+  border-radius: 10px;
+  border-left: 5px solid white;
+}
+
+.info-box h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  color: #222;
+  line-height: 1.6;
+}
+
+.info-right.destacado {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: -40px; /* hace que la imagen sobresalga */
+}
+
+.gerente-img {
+ width: 100%;
+  max-width: 520px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  transform: scale(1.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 60px;
+}
+
+.gerente-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.titulo-principal {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+.titulo-principal h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: #1b1b1b;
+}
+
+.titulo-principal p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 10px;
+}
+
 .dropdown {
   position: relative;
+  display: inline-block;
 }
- 
+
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
-  color: black;
-  top: 100%;
-  left: 0;
-  min-width: 180px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  border-radius: 4px;
-  z-index: 100;
+  background-color: #1b1b1b;
+  min-width: 240px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1001;
+  border-radius: 6px;
 }
- 
+
 .dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  font-weight: 400;
 }
- 
+
 .dropdown-content a:hover {
-  background-color: #f0f0f0;
+  background-color: #333;
 }
- 
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
- 
-/* Título principal */
-.main-heading {
-  text-align: center;
-  margin: 40px 0 20px;
-}
- 
-.main-heading h2 {
-  font-size: 1.6rem;
-  font-weight: 400;
-  margin-bottom: 10px;
-}
- 
-.main-heading strong {
-  font-size: 1.8rem;
-  color: #000;
-}
- 
-/* Carrusel */
-.carousel-wrapper {
-  position: relative;
-  max-width: 95%;
-  margin: 0 auto;
-  overflow: hidden;
-}
- 
-.carousel {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-}
- 
-.carousel img {
-  min-width: 300px;
-  height: 300px;
-  margin-right: 20px;
-  border-radius: 8px;
-  object-fit: cover;
-}
- 
-.carousel-controls {
-  text-align: center;
-  margin-top: 20px;
-}
- 
-.dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-}
- 
-.dot.active {
-  background-color: #f0c000;
-}
- 
-    /* Barra de navegación */
-    .nav-container {
-      background-color: #1b1b1b;
-      padding: 10px 20px;
-    }
- 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
- 
-    .nav-links img {
-      height: 50px;
-    }
- 
-    .nav-link1 {
-      display: flex;
-      gap: 20px;
-    }
- 
-    .nav-link1 a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
- 
-    .nav-link1 a:hover {
-      color: #ffd700;
-    }
- 
-    /* Estilo general */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
-      color: #000000;
-    }
- 
-    .bienvenida {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
- 
-    .welcome-header {
-      text-align: center;
-      margin: 20px 0;
-    }
- 
-    .welcome-header h1 {
-      font-size: 2.5rem;
-      color: #3d39ff;
-      margin-bottom: 10px;
-    }
- 
-    .welcome-header p {
-      font-size: 1.2rem;
-      color: #555;
-    }
- 
-    /* Galería de imágenes cuadradas en horizontal */
-    .image-gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 20px;
-      padding: 30px;
-      overflow-x: auto;
-    }
- 
-    .image-gallery img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
- 
-    .image-gallery img:hover {
-      transform: scale(1.05);
-    }
- 
- 
