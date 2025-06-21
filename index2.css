@@ -1,14 +1,19 @@
 /* Estilos básicos para la página */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #ffffff;
-  color: #000000;
+   margin: 0;
+  padding: 9;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: url('img/imagen4.jpg') no-repeat center center fixed;
+   background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
 }
 
 /* Barra de navegación fija arriba */
+/* NAV */
 .nav-container {
-   position: fixed;
+  position: fixed;
   top: 0;
   width: 100%;
   background-color: #1b1b1b;
@@ -19,36 +24,34 @@ body {
   z-index: 1000;
 }
 
-/* Logo a la izquierda */
-.nav-container .img1 {
-  height: 50px;
-  cursor: pointer;
-  flex-shrink: 0;
+.img1 {
+  width: 150px;
+  height: auto;
+  
 }
 
-/* Menú centrado exactamente */
 .nav-links {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  color: white;
-  font-weight: bold;
+  gap: 2rem;
+  justify-content: center;
+  flex: 1;
+  margin-right: 130px; /* espacio para la imagen */
+}
 
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
 }
 
 /* Estilos de enlaces normales y dropdown toggle */
-.nav-links a,
-.dropdown > a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
+
 .nav-links a:hover {
   color: #ffd700;
 }
@@ -57,42 +60,37 @@ body {
   background-color: #0073e6;
 }
 
-/* Dropdown */
 .dropdown {
   position: relative;
+  display: inline-block;
 }
 
-/* Dropdown content */
 .dropdown-content {
-  display: none; /* oculto por defecto */
+  display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #000000;
-  min-width: 200px;
+  background-color: #1b1b1b;
+  min-width: 240px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1001;
   border-radius: 6px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-  z-index: 1000;
-  transition: opacity 0.3s ease;
 }
 
-/* Mostrar dropdown cuando tenga la clase show */
-.dropdown.show .dropdown-content {
-  display: block;
-}
-
-/* Estilos enlaces dentro del dropdown */
 .dropdown-content a {
-  display: block;
-  padding: 10px 15px;
   color: white;
+  padding: 12px 16px;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  display: block;
+  font-weight: 400;
 }
 
 .dropdown-content a:hover {
-  background-color: #000000;
+  background-color: #333;
 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 /* Opcional: Ajuste de padding para que la página no quede oculta debajo de la barra fija */
 body.bienvenida {
@@ -108,8 +106,9 @@ body.bienvenida {
 
 .welcome-header h1 {
   font-size: 2.5rem;
-  color: #3d39ff;
+  color: #000000;
   margin-bottom: 10px;
+  margin-top: 60px; 
 }
 
 .welcome-header p {
@@ -138,4 +137,23 @@ body.bienvenida {
 
 .image-gallery img:hover {
   transform: scale(1.05);
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

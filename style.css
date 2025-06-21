@@ -4,8 +4,12 @@ body, html {
   padding: 0;
   font-family: 'Segoe UI', Arial;
   color: #000000;
-  background: linear-gradient(to right, #ffffff, #4b59ff
- );
+  /* background: linear-gradient(to right, #ffffff, #4b59ff
+ ); */
+ background: url('img/imagen4.jpg') no-repeat center center fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* ========== HEADER Y PERFIL ========== */
@@ -479,20 +483,20 @@ button:hover {
 .socializacion {
   margin-top: 40px;
   text-align: center;
+  
 }
 
 .socializacion button {
-  background-color: #3d39ff;
-  color: white;
+  background-color: yellow;
+  color: rgb(0, 0, 0);
   padding: 12px 24px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
-.socializacion button:hover {
-  background-color: #2c28cc;
-}
+
 
