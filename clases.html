@@ -55,11 +55,10 @@
               Clase 2
             </li>
           </ul>
-          <!-- Botón de Socialización -->
-          <div class="socializacion">
-            <button onclick="window.location.href='socializacion.html'">
-              Socialización
-            </button>
+         <!-- Botón de Socialización -->
+<div class="socializacion">
+  <button id="btnSocializar">Socialización</button>
+</div>
         </aside>
 
         <main class="content">
@@ -91,7 +90,16 @@
               Enviar
             </button>
           </div>
-
+          <!-- MODAL DE SOCIALIZACIÓN -->
+<div id="modal-social" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" id="closeSocial">&times;</span>
+    <h2>Detalles de la reunión</h2>
+    <p><strong>📅 Fecha:</strong> 10 de junio de 2025</p>
+    <p><strong>🕒 Hora:</strong> 6:30 PM</p>
+    <p><strong>🔗 Enlace:</strong> <a href="https://meet.google.com/abc-defg-hij" target="_blank">Unirse a la reunión</a></p>
+  </div>
+</div>
           <!-- Botón de Socialización
           <div class="socializacion">
             <button onclick="window.location.href='socializacion.html'">
@@ -280,6 +288,27 @@
         progressBar.value = progreso;
         progressLabel.textContent = `Progreso: ${progreso}%`;
       }
+
+      // Abrir y cerrar modal de socialización
+const btnSocializar = document.getElementById("btnSocializar");
+const modalSocial = document.getElementById("modal-social");
+const closeSocial = document.getElementById("closeSocial");
+
+btnSocializar.addEventListener("click", () => {
+  modalSocial.classList.remove("hidden");
+});
+
+closeSocial.addEventListener("click", () => {
+  modalSocial.classList.add("hidden");
+});
+
+// Cerrar modal si se hace clic fuera del contenido
+window.addEventListener("click", (e) => {
+  if (e.target === modalSocial) {
+    modalSocial.classList.add("hidden");
+  }
+});
+
     </script>
   </body>
 </html>
