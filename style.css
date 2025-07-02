@@ -29,6 +29,7 @@ header {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  
 }
 
 .nav-links a {
@@ -450,6 +451,11 @@ button:hover {
 }
 
 
+.img2 {
+  width: 30px;
+  height: auto;
+  
+}
 .dropdown {
   position: relative;
   display: inline-block;
