@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Mi Plataforma</title>
     <link rel="stylesheet" href="login.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   </head>
   <body>
     <div id="login-screen" class="form-box">
@@ -23,6 +24,24 @@
         const user = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value.trim();
 
+        const datos = {
+      username: user,
+      password: pass
+    };
+ 
+    // $.ajax({
+    //   url: 'http://localhost:8000/auth/login',
+    //   method: 'POST',
+    //   contentType: 'application/json',
+    //   data: JSON.stringify(datos),
+    //   success: function(respuesta) {
+    //     // $('#respuesta').text(JSON.stringify(respuesta, null, 2));
+    //     console.info('Respuesta del servidor:', respuesta);
+    //   },
+    //   error: function(xhr) {
+    //     $('#respuesta').text('Error: ' + xhr.status + ' ' + xhr.responseText);
+    //   }
+    // });
         const validUser = 'admin';
         const validPass = '1234';
 
