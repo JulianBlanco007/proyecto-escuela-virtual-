@@ -1,8 +1,8 @@
 // Lista de preguntas para el cuestionario
 const questions = [
-  "¿Qué le llamó la atención?",
-  "¿Les surgió alguna duda o pregunta?",
-  "¿A qué les retó el tema y cómo asumirás el reto?"
+  '¿Qué le llamó la atención?',
+  '¿Les surgió alguna duda o pregunta?',
+  '¿A qué les retó el tema y cómo asumirás el reto?',
 ];
 
 let currentQuestionIndex = 0;
@@ -10,10 +10,10 @@ let answers = [];
 let player; // YouTube player
 
 // Elementos del DOM
-const questionnaire = document.getElementById("questionnaire");
-const questionTitle = document.getElementById("question-title");
-const answerInput = document.getElementById("answer");
-const video = document.getElementById("video-frame");
+const questionnaire = document.getElementById('questionnaire');
+const questionTitle = document.getElementById('question-title');
+const answerInput = document.getElementById('answer');
+const video = document.getElementById('video-frame');
 
 // ====== CARRUSEL DE IMÁGENES ======
 // Referencia al carrusel
@@ -72,7 +72,7 @@ function loadVideo(title, url) {
 
 // Mostrar el cuestionario al terminar el video
 function onVideoEnded() {
-  questionnaire.classList.remove("hidden");
+  questionnaire.classList.remove('hidden');
   showQuestion();
 }
 

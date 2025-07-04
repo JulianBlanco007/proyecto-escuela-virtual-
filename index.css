@@ -22,9 +22,17 @@ body, html {
 }
 
 .img1 {
-  width: 150px;
+  width: 164px;
   height: auto;
   
+}
+
+.img2 {
+  width: 30px;
+  height: auto;
+  align-items: center;
+  position: fixed;
+  margin-left: 350px; /* espacio para la imagen */
 }
 
 .nav-links {
