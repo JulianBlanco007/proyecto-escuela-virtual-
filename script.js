@@ -15,6 +15,41 @@ const questionTitle = document.getElementById("question-title");
 const answerInput = document.getElementById("answer");
 const video = document.getElementById("video-frame");
 
+// ====== CARRUSEL DE IMÁGENES ======
+// Referencia al carrusel
+const carousel = document.getElementById('carousel');
+let scrollPosition = 0;
+
+window.scrollCarousel = function(direction) {
+  if (!carousel) return;
+
+  // Obtener ancho de una imagen incluyendo margin/gap
+  const firstImage = carousel.querySelector('img');
+  if (!firstImage) return;
+  const imageStyle = getComputedStyle(firstImage);
+  const imageWidth = firstImage.offsetWidth + 
+    parseInt(imageStyle.marginRight) + parseInt(imageStyle.marginLeft);
+
+  // Mover 3 imágenes por vez (puedes cambiar 3 a otro número si quieres)
+  const scrollAmount = imageWidth * 3;
+
+  // Nuevo scroll esperado
+  let newScrollPos = scrollPosition + direction * scrollAmount;
+
+  // Limitar scroll para no pasar extremos
+  const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+  if (newScrollPos < 0) newScrollPos = 0;
+  if (newScrollPos > maxScrollLeft) newScrollPos = maxScrollLeft;
+
+  scrollPosition = newScrollPos;
+
+  carousel.scrollTo({
+    left: scrollPosition,
+    behavior: 'smooth'
+  });
+}
+// ==================================
+
 // Función para cargar un video
 function loadVideo(title, url) {
   document.getElementById('class-title').innerText = title;
@@ -65,9 +100,27 @@ function submitAnswer() {
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
+    saveAnswers();
+    marcarClaseComoVista(document.getElementById('class-title').innerText);
     questionnaire.classList.add("hidden");
     goToNextClass();
   }
+}
+
+// Guardar respuestas en localStorage
+function saveAnswers() {
+  const classTitle = document.getElementById('class-title').innerText || 'Clase';
+  localStorage.setItem(`respuestas_${classTitle}`, JSON.stringify(answers));
+}
+
+// Marcar la clase actual como completada
+function marcarClaseComoVista(title) {
+  let completadas = JSON.parse(localStorage.getItem("clases_completadas") || "[]");
+  if (!completadas.includes(title)) {
+    completadas.push(title);
+    localStorage.setItem("clases_completadas", JSON.stringify(completadas));
+  }
+  updateProgress();
 }
 
 // Pasar a la siguiente clase
@@ -117,7 +170,10 @@ window.onload = () => {
   if (usernameElement && name) {
     usernameElement.textContent = "Hola, " + name;
   }
-};
+
+  updateProgress();
+  document.querySelector('#class-list li.active')?.click();
+}
 
 // Inicializar API de YouTube
 function onYouTubeIframeAPIReady() {
@@ -145,3 +201,18 @@ window.addEventListener('click', function (e) {
     document.getElementById('dropdown-menu')?.classList.add('hidden');
   }
 });
+
+// Actualizar barra de progreso
+function updateProgress() {
+  const totalClases = document.querySelectorAll("#class-list li").length;
+  const completadas = JSON.parse(localStorage.getItem("clases_completadas") || "[]");
+  const progreso = Math.floor((completadas.length / totalClases) * 100);
+
+  const progressBar = document.querySelector('.progress progress');
+  const progressLabel = document.querySelector('.progress label');
+
+  if (progressBar && progressLabel) {
+    progressBar.value = progreso;
+    progressLabel.textContent = `Progreso: ${progreso}%`;
+  }
+}

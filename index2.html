@@ -31,11 +31,20 @@ sistema productivo y económico de Dios</p>
   </header>
 
   <!-- Galería de imágenes -->
-  <div class="image-gallery">
-    <img src="img/1.jpeg" alt="Imagen 1">
-    <img src="img/2.jpeg" alt="Imagen 2">
-    <img src="img/3.jpeg" alt="Imagen 3">
+<div class="carousel-container">
+  <button class="arrow left" onclick="scrollCarousel(-1)">⬅</button>
+
+  <div class="carousel-track" id="carousel">
+    <img src="img/1.jpeg" alt="Imagen 1" />
+    <img src="img/2.jpeg" alt="Imagen 2" />
+    <img src="img/3.jpeg" alt="Imagen 3" />
+    <img src="img/1.jpeg" alt="Imagen 4" />
+    <img src="img/2.jpeg" alt="Imagen 5" />
   </div>
+
+  <button class="arrow right" onclick="scrollCarousel(1)">➡</button>
+</div>
+
 
   <!-- Script para mantener visible el menú -->
   <script>
@@ -46,7 +55,11 @@ sistema productivo y económico de Dios</p>
       clearTimeout(hideTimeout);
       dropdown.classList.add('show');
     });
-
+    dropdown.addEventListener('mouseleave', () => {
+      hideTimeout = setTimeout(() => {
+        dropdown.classList.remove('show');
+      }, 300); // Espera antes de cerrar
+    });
     dropdown.addEventListener('mouseleave', () => {
       hideTimeout = setTimeout(() => {
         dropdown.classList.remove('show');

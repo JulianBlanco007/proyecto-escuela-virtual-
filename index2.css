@@ -1,19 +1,14 @@
 /* Estilos básicos para la página */
 body {
-   margin: 0;
-  padding: 9;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: url('img/imagen4.jpg') no-repeat center center fixed;
-   background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 /* Barra de navegación fija arriba */
-/* NAV */
 .nav-container {
-  position: fixed;
+   position: fixed;
   top: 0;
   width: 100%;
   background-color: #1b1b1b;
@@ -24,73 +19,162 @@ body {
   z-index: 1000;
 }
 
-.img1 {
-  width: 150px;
-  height: auto;
-  
+/* Logo a la izquierda */
+.nav-container .img1 {
+  height: 50px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+/* Contenedor principal del carrusel con flexbox */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
+/* Estilo de las flechas (botones) */
+.arrow {
+  background-color: #005a87;
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  padding: 8px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.arrow:hover {
+  background-color: #007bbd;
+}
+
+/* Track del carrusel: fila horizontal, scrollable */
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  width: 960px; /* muestra 3 imágenes de 300px + margenes */
+  scrollbar-width: none; /* Firefox: oculta scrollbar */
+  box-sizing: border-box;
+}
+
+/* Ocultar scrollbar en Chrome, Edge y Safari */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Imágenes dentro del carrusel */
+.carousel-track img {
+  width: 300px;
+  height: auto;
+  margin: 0 10px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-track img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive: ajustar ancho del carrusel en pantallas más pequeñas */
+@media (max-width: 1000px) {
+  .carousel-track {
+    width: 100%;
+  }
+  .carousel-track img {
+    width: 45vw;
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .arrow {
+    font-size: 1.5rem;
+    padding: 6px 10px;
+  }
+  .carousel-track img {
+    width: 80vw;
+    margin: 0 5px;
+  }
+}
+
+/* Menú centrado exactamente */
 .nav-links {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex: 1;
-  margin-right: 130px; /* espacio para la imagen */
-}
-
-.nav-links a {
+  gap: 20px;
+  align-items: center;
   color: white;
-  text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
 
-.nav-links a:hover {
-  color: #ffd700;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Estilos de enlaces normales y dropdown toggle */
-
+.nav-links a,
+.dropdown > a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
 .nav-links a:hover {
   color: #ffd700;
 }
-
+.nav-links a:hover,
 .dropdown > a:hover {
   background-color: #0073e6;
 }
 
+/* Dropdown */
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
+/* Dropdown content */
 .dropdown-content {
-  display: none;
+  display: none; /* oculto por defecto */
   position: absolute;
-  background-color: #1b1b1b;
-  min-width: 240px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1001;
+  top: 100%;
+  left: 0;
+  background-color: #000000;
+  min-width: 200px;
   border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
 }
 
-.dropdown-content a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
+/* Mostrar dropdown cuando tenga la clase show */
+.dropdown.show .dropdown-content {
   display: block;
-  font-weight: 400;
+}
+
+/* Estilos enlaces dentro del dropdown */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
 .dropdown-content a:hover {
-  background-color: #333;
+  background-color: #000000;
 }
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 
 /* Opcional: Ajuste de padding para que la página no quede oculta debajo de la barra fija */
 body.bienvenida {
@@ -106,9 +190,8 @@ body.bienvenida {
 
 .welcome-header h1 {
   font-size: 2.5rem;
-  color: #000000;
+  color: #3d39ff;
   margin-bottom: 10px;
-  margin-top: 60px; 
 }
 
 .welcome-header p {
@@ -137,23 +220,4 @@ body.bienvenida {
 
 .image-gallery img:hover {
   transform: scale(1.05);
-}
-
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .main-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-links {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
 }
